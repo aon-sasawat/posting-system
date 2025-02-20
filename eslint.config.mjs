@@ -25,6 +25,7 @@ const config = [
           unnamedComponents: "arrow-function",
         },
       ],
+      "react/self-closing-comp": "error",
 
       // TypeScript Rules
       "@typescript-eslint/no-unused-vars": [
