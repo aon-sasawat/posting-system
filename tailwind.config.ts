@@ -9,8 +9,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        "green-100": "#D8E9E4",
+        "green-300": "#2B5F44",
+        "green-500": "#243831",
+        success: "#49A569",
+        golden: "#C5A365",
+        "gray-100": "#BBC2C0",
+        "gray-300": "#939494",
+      },
+      fontFamily: {
+        castoro: ["Castoro", "serif"],
       },
     },
   },
