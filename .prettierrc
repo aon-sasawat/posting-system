@@ -6,8 +6,8 @@
   "useTabs": false,
   "semi": true,
   "bracketSpacing": true,
-  "arrowParens": "avoid",
-  "printWidth": 80,
+  "arrowParens": "always",
+  "printWidth": 150,
   "overrides": [
     {
       "files": "*.tsx",
