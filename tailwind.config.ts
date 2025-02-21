@@ -1,11 +1,7 @@
 import type { Config } from "tailwindcss";
 
 export default {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ["./src/pages/**/*.{js,ts,jsx,tsx,mdx}", "./src/components/**/*.{js,ts,jsx,tsx,mdx}", "./src/app/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
       colors: {
@@ -16,9 +12,11 @@ export default {
         golden: "#C5A365",
         "gray-100": "#BBC2C0",
         "gray-300": "#939494",
+        placeholder: "#5B5B5B",
       },
       fontFamily: {
         castoro: ["Castoro", "serif"],
+        ibm: ["IBM Plex Sans Thai", "sans-serif"],
       },
     },
   },
