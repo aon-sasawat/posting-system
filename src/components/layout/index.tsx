@@ -7,7 +7,7 @@ const Layout: FC<HTMLAttributes<HTMLElement>> = ({ children }) => {
     <>
       <Header />
       <Sidebar />
-      <div className="mt-[60px] ml-[280px] pt-[35px] pl-[40px]">{children}</div>
+      <div className="mt-[60px] mx-[280px] py-[35px] pl-[40px]">{children}</div>
     </>
   );
 };
