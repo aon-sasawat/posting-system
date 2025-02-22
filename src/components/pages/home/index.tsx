@@ -1,11 +1,11 @@
 import { FC } from "react";
-import BlogList from "@/components/ui/blog-list";
 import Button from "@/components/ui/button";
 import Dropdown from "@/components/ui/dropdown";
+import PostList from "@/components/ui/post-list";
 import Search from "@/components/ui/search";
 
 const HomePageComponent: FC = () => {
-  const blogs = [
+  const posts = [
     {
       id: "1",
       poster: "Wittawat",
@@ -65,7 +65,7 @@ const HomePageComponent: FC = () => {
         <Button className="w-[105px] h-10">Create +</Button>
       </div>
       <div className="bg-white rounded-xl w-[798px]">
-        <BlogList blogs={blogs} />
+        <PostList posts={posts} />
       </div>
     </div>
   );
