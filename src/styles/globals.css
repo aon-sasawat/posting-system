@@ -3,3 +3,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.css-hlgwow {
+    display: flex !important;
+    padding: 0 !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
