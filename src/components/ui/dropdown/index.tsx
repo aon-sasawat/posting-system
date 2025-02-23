@@ -20,6 +20,7 @@ const selectVariants = cva("py-2 cursor-pointer z-0", {
 interface Props extends SelectProps, VariantProps<typeof selectVariants> {}
 
 const Dropdown: FC<Props> = ({ placeholder, variant, className, ...props }) => {
+
   const customStyles = {
     control: () => ({
       maxHeight: "40px",
@@ -46,8 +47,14 @@ const Dropdown: FC<Props> = ({ placeholder, variant, className, ...props }) => {
     <Select
       className={cn(selectVariants({ variant, className }))}
       placeholder={
-        <div className={cn("flex items-center justify-center gap-[5px] font-ibm font-semibold text-sm text-black", variant === "button" && "text-success")}>
-          {placeholder} <Icon svg={ChevronDownIcon} width={15} strokeWidth={1.7} className={cn("text-black", variant === "button" && "text-success")} />
+        <div
+          className={cn(
+            "flex items-center justify-center gap-[5px] font-ibm font-semibold text-sm text-black",
+            variant === "button" && "text-success",
+          )}
+        >
+          {placeholder}{" "}
+          <Icon svg={ChevronDownIcon} width={15} strokeWidth={1.7} className={cn("text-black", variant === "button" && "text-success")} />
         </div>
       }
       styles={customStyles}

@@ -32,6 +32,33 @@ export interface GetAllPostsResponse extends BaseResponse {
       id: string;
       name: string;
     };
-    comments: [];
+    comments: { id: string; userId: string; content: string; postId: string }[];
   }[];
+}
+
+export interface GetPostByIdResponse extends BaseResponse {
+  data: {
+    id: string;
+    title: string;
+    content: string;
+    userId: string;
+    tagId: string;
+    user: {
+      id: string;
+      username: string;
+    };
+    tag: {
+      id: string;
+      name: string;
+    };
+    comments: { id: string; userId: string; content: string; postId: string; user: { id: string; username: string } }[];
+  };
+}
+
+export interface CreatePostResponse extends BaseResponse {
+  id: string;
+  title: string;
+  content: string;
+  userId: string;
+  tagId: string;
 }
