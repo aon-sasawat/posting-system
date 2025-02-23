@@ -5,14 +5,11 @@ import CommentIcon from "@/assets/svg/comment-icon.svg";
 import EditIcon from "@/assets/svg/edit-icon.svg";
 import TrashIcon from "@/assets/svg/trash-icon.svg";
 import { cn } from "@/utils/cn";
-import Button from "../button";
 import Divider from "../divider";
-import Dropdown from "../dropdown";
 import { Icon } from "../icon";
-import Input from "../input";
-import Modal from "../modal";
+import DeletePostModal from "../modal/delete-post-modal";
+import EditPostModal from "../modal/edit-post-modal";
 import Tag from "../tag";
-import Textarea from "../textarea";
 
 interface Props extends InputHTMLAttributes<HTMLDivElement> {
   posts: {
@@ -83,35 +80,9 @@ const PostList: FC<Props> = ({ posts, mode, className, ...props }) => {
           <Icon svg={CommentIcon} width={12} strokeWidth={1} />
           {post?.commentCount} Comments
         </div>
+        <EditPostModal isOpen={isEditModalOpen} onRequestClose={handleCloseEditModal} postId={post?.id} />
+        <DeletePostModal isOpen={isDeleteModalOpen} onRequestClose={handleCloseDeleteModal} postId={post?.id} />
       </div>
-      <Modal className="w-[685px] h-[510px]" isOpen={isEditModalOpen} onRequestClose={() => setIsEditModalOpen(false)}>
-        <p className="text-[28px] font-semibold">Edit Post</p>
-        <div className="flex flex-col gap-[14px] mt-[30px] mb-[10px]">
-          <Dropdown className="w-[195px]" placeholder="Choose a community" options={[]} variant="button" />
-          <Input placeholder="Title" />
-          <Textarea className="h-[234px]" placeholder="What’s on your mind..." />
-        </div>
-        <div className="flex justify-end gap-3">
-          <Button className="w-[105px] h-10" variant="outline" onClick={handleCloseEditModal}>
-            Cancel
-          </Button>
-          <Button className="w-[105px] h-10" onClick={handleCloseEditModal}>
-            Post
-          </Button>
-        </div>
-      </Modal>
-      <Modal className="w-[400px] h-[248px] px-6 py-[30px]" isOpen={isDeleteModalOpen} onRequestClose={() => setIsDeleteModalOpen(false)}>
-        <p className="font-semibold text-lg text-center">Please confirm if you wish to delete the post</p>
-        <p className="text-[#475467] text-center mt-2 mb-8">Are you sure you want to delete the post? Once deleted, it cannot be recovered.</p>
-        <div className="flex items-center justify-center gap-3">
-          <Button variant="outline-secondary" className="w-[170px] h-11" onClick={handleCloseDeleteModal}>
-            Cancel
-          </Button>
-          <Button variant="danger" className="w-[170px] h-11" onClick={handleCloseDeleteModal}>
-            Delete
-          </Button>
-        </div>
-      </Modal>
     </>
   ));
 };

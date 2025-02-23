@@ -1,11 +1,11 @@
 import { FC, useCallback, useMemo, useState } from "react";
 import Button from "@/components/ui/button";
 import Dropdown from "@/components/ui/dropdown";
+import CreatePostModal from "@/components/ui/modal/create-post-modal";
 import PostList from "@/components/ui/post-list";
 import Search from "@/components/ui/search";
 import { useGetAllPostsQuery } from "@/redux/slice/post";
 import { useGetAllTagsQuery } from "@/redux/slice/tag";
-import CreatePostModal from "./modal/create-post-modal";
 
 const HomePageComponent: FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
