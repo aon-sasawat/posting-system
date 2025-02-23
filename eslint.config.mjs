@@ -38,7 +38,6 @@ const config = [
       semi: ["error", "always"],
       quotes: ["error", "double"],
       "comma-dangle": ["error", "always-multiline"],
-      indent: ["error", 2],
       "func-style": ["error", "expression"],
       "import/order": [
         "error",
