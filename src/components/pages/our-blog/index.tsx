@@ -7,7 +7,7 @@ import PostList from "@/components/ui/post-list";
 import Search from "@/components/ui/search";
 import Textarea from "@/components/ui/textarea";
 
-const HomePageComponent: FC = () => {
+const OurBlogPageComponent: FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const posts = [
     {
@@ -23,28 +23,6 @@ const HomePageComponent: FC = () => {
     },
     {
       id: "2",
-      poster: "Wittawat",
-      tag: "History",
-      title: "The Beginning of the End of the World",
-      content: `The afterlife sitcom The Good Place comes to its culmination, the show’s two protagonists, Eleanor and Chidi, contemplate their future. Having
-    lived thousands upon thousands of lifetimes together, and having experienced virtually everything this life has to offer, they are weary. It
-    is time for it all to end. The show’s solution to this perpetual happiness-cum-weariness is extinction. When you have had enough, when you are
-    utterly sated by love and joy and pleasure, you can walk through a passage to nothingness. And Chidi has had enough.`,
-      commentCount: 32,
-    },
-    {
-      id: "3",
-      poster: "Wittawat",
-      tag: "History",
-      title: "The Beginning of the End of the World",
-      content: `The afterlife sitcom The Good Place comes to its culmination, the show’s two protagonists, Eleanor and Chidi, contemplate their future. Having
-    lived thousands upon thousands of lifetimes together, and having experienced virtually everything this life has to offer, they are weary. It
-    is time for it all to end. The show’s solution to this perpetual happiness-cum-weariness is extinction. When you have had enough, when you are
-    utterly sated by love and joy and pleasure, you can walk through a passage to nothingness. And Chidi has had enough.`,
-      commentCount: 32,
-    },
-    {
-      id: "4",
       poster: "Wittawat",
       tag: "History",
       title: "The Beginning of the End of the World",
@@ -81,7 +59,7 @@ const HomePageComponent: FC = () => {
         </Button>
       </div>
       <div className="bg-white rounded-xl w-[798px]">
-        <PostList posts={posts} mode="view" />
+        <PostList posts={posts} mode="manage" />
       </div>
       <Modal className="w-[685px] h-[510px]" isOpen={isModalOpen} onRequestClose={handleCloseModal}>
         <p className="text-[28px] font-semibold">Create Post</p>
@@ -103,4 +81,4 @@ const HomePageComponent: FC = () => {
   );
 };
 
-export default HomePageComponent;
+export default OurBlogPageComponent;
