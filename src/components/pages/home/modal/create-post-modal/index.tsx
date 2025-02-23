@@ -38,9 +38,8 @@ const CreatePostModal: FC<Props> = ({ isOpen, onRequestClose: handleCloseModal }
       router.push("/sign-in");
       return;
     }
-    createPost({ title: formValue.title, content: formValue.content, userId: user.id, tagId: formValue.tag.value });
-    form.reset();
-    handleCloseModal();
+    await createPost({ title: formValue.title, content: formValue.content, userId: user.id, tagId: formValue.tag.value });
+    router.refresh();
   };
 
   const handleRequestClose = () => {

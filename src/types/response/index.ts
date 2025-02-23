@@ -62,3 +62,10 @@ export interface CreatePostResponse extends BaseResponse {
   userId: string;
   tagId: string;
 }
+
+export interface CreateCommentResponse extends BaseResponse {
+  id: string;
+  content: string;
+  userId: string;
+  postId: string;
+}

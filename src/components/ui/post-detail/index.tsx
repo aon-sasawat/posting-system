@@ -1,13 +1,24 @@
 import { FC, InputHTMLAttributes, ReactNode, useCallback, useState } from "react";
+import { useForm } from "react-hook-form";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import CommentIcon from "@/assets/svg/comment-icon.svg";
+import { useAppSelector } from "@/redux/hooks";
+import { useCreateCommentMutation } from "@/redux/slice/comment";
+import { cn } from "@/utils/cn";
 import Button from "../button";
 import { Icon } from "../icon";
 import Tag from "../tag";
 import Textarea from "../textarea";
-import CommentIcon from "@/assets/svg/comment-icon.svg";
-import { cn } from "@/utils/cn";
+
+const createCommentSchema = z.object({
+  content: z.string().min(1, "Content is required"),
+});
 
 interface Props extends InputHTMLAttributes<HTMLDivElement> {
+  postId: string;
   poster: string;
   tag: ReactNode;
   title: string;
@@ -19,8 +30,23 @@ interface Props extends InputHTMLAttributes<HTMLDivElement> {
   }[];
 }
 
-const PostDetail: FC<Props> = ({ poster, tag, title, content, comments, className, ...props }) => {
+const PostDetail: FC<Props> = ({ postId, poster, tag, title, content, comments, className, ...props }) => {
   const [isAddComment, setIsAddComment] = useState(false);
+  const [createComment] = useCreateCommentMutation();
+  const form = useForm<z.infer<typeof createCommentSchema>>({
+    resolver: zodResolver(createCommentSchema),
+  });
+  const user = useAppSelector((state) => state.user);
+  const router = useRouter();
+
+  const onSubmit = async (formValue: z.infer<typeof createCommentSchema>) => {
+    if (!user.id) {
+      router.push("/sign-in");
+      return;
+    }
+    await createComment({ content: formValue.content, userId: user.id, postId });
+    router.refresh();
+  };
 
   const handleClickAddComment = useCallback(() => {
     setIsAddComment(true);
@@ -49,15 +75,17 @@ const PostDetail: FC<Props> = ({ poster, tag, title, content, comments, classNam
         </Button>
       )}
       {isAddComment && (
-        <div className="flex flex-col gap-[10px] mt-8">
-          <Textarea className="h-[100px] placeholder-placeholder font-ibm" placeholder="What’s on your mind..." />
-          <div className="flex justify-end gap-3">
-            <Button variant="outline" className="w-[105px] h-10" onClick={handleClickCancelComment}>
-              Cancel
-            </Button>
-            <Button className="w-[105px] h-10">Post</Button>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <div className="flex flex-col gap-[10px] mt-8">
+            <Textarea className="h-[100px] placeholder-placeholder font-ibm" placeholder="What’s on your mind..." {...form.register("content")} />
+            <div className="flex justify-end gap-3">
+              <Button variant="outline" className="w-[105px] h-10" onClick={handleClickCancelComment}>
+                Cancel
+              </Button>
+              <Button className="w-[105px] h-10">Post</Button>
+            </div>
           </div>
-        </div>
+        </form>
       )}
       {comments.map((comment) => (
         <div key={comment?.id} className="flex flex-col gap-2 mt-6">

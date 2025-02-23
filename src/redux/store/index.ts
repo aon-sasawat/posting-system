@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
+import { commentApi } from "../slice/comment";
 import { postApi } from "../slice/post";
 import { tagApi } from "../slice/tag";
 import userReducer, { userApi } from "../slice/user";
@@ -10,8 +11,10 @@ export const store = configureStore({
     [userApi.reducerPath]: userApi.reducer,
     [tagApi.reducerPath]: tagApi.reducer,
     [postApi.reducerPath]: postApi.reducer,
+    [commentApi.reducerPath]: commentApi.reducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(userApi.middleware, tagApi.middleware, postApi.middleware),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(userApi.middleware, tagApi.middleware, postApi.middleware, commentApi.middleware),
 });
 
 setupListeners(store.dispatch);

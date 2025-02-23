@@ -29,6 +29,7 @@ const PostDetailPageComponent: FC<Props> = ({ id }) => {
           <Icon svg={LeftArrow} width={14} height={14} strokeWidth={2} />
         </Button>
         <PostDetail
+          postId={id}
           poster={post?.data?.user?.username as string}
           tag={post?.data?.tag?.name}
           title={post?.data?.title as string}

@@ -4,3 +4,9 @@ export interface CreatePostRequest {
   userId: string;
   tagId: string;
 }
+
+export interface CreateCommentRequest {
+  content: string;
+  userId: string;
+  postId: string;
+}
