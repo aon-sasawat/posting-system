@@ -9,6 +9,7 @@ export default {
         "green-300": "#2B5F44",
         "green-500": "#243831",
         success: "#49A569",
+        danger: "#F23536",
         golden: "#C5A365",
         "gray-100": "#BBC2C0",
         "gray-300": "#939494",
