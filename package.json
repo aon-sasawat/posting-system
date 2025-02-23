@@ -11,14 +11,17 @@
     "lint:format": "prettier --write ./**/*.{json,ts,tsx,css}"
   },
   "dependencies": {
+    "@hookform/resolvers": "^4.1.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "next": "15.1.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-hook-form": "^7.54.2",
     "react-modal": "^3.16.3",
     "react-select": "^5.10.0",
-    "tailwind-merge": "^3.0.1"
+    "tailwind-merge": "^3.0.1",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
