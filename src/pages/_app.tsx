@@ -3,16 +3,26 @@ import { FC } from "react";
 import type { AppProps } from "next/app";
 import { usePathname } from "next/navigation";
 import Layout from "@/components/layout";
+import InitialState from "@/redux/initial/intial";
+import Providers from "@/redux/provider";
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
   const pathName = usePathname();
 
-  return pathName !== "/sign-in" ? (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
-  ) : (
-    <Component {...pageProps} />
+  return (
+    <Providers>
+      {pathName !== "/sign-in" ? (
+        <Layout>
+          <InitialState />
+          <Component {...pageProps} />
+        </Layout>
+      ) : (
+        <>
+          <InitialState />
+          <Component {...pageProps} />
+        </>
+      )}
+    </Providers>
   );
 };
 
