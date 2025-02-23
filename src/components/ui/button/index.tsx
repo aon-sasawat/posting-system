@@ -6,16 +6,18 @@ const buttonVariants = cva("font-ibm font-semibold rounded-lg text-sm", {
   variants: {
     variant: {
       default: "bg-success text-white",
-      outline: "bg-white text-success border border-success",
+      danger: "bg-danger text-white",
+      outline: "bg-white text-success border border-success hover:bg-success hover:text-white transition-colors",
+      "outline-secondary": "bg-white text-placeholder border border-[#DADADA] hover:bg-placeholder hover:text-white transition-colors",
     },
   },
   defaultVariants: {
     variant: "default",
   },
 });
-interface props extends HTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {}
+interface Props extends HTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {}
 
-const Button: FC<props> = ({ variant, className, ...props }) => {
+const Button: FC<Props> = ({ variant, className, ...props }) => {
   return <button className={cn(buttonVariants({ variant, className }))} {...props} />;
 };
 

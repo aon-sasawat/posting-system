@@ -1,9 +1,25 @@
 import { FC } from "react";
-import Select, { Props } from "react-select";
+import Select, { Props as SelectProps } from "react-select";
+import { cva, VariantProps } from "class-variance-authority";
 import ChevronDownIcon from "@/assets/svg/chevron-down-icon.svg";
+import { cn } from "@/utils/cn";
 import { Icon } from "../icon";
 
-const Dropdown: FC<Props> = ({ placeholder, ...props }) => {
+const selectVariants = cva("py-2 cursor-pointer z-0", {
+  variants: {
+    variant: {
+      default: "",
+      button: "border border-green-100 rounded-lg placeholder-success",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+  },
+});
+
+interface Props extends SelectProps, VariantProps<typeof selectVariants> {}
+
+const Dropdown: FC<Props> = ({ placeholder, variant, className, ...props }) => {
   const customStyles = {
     control: () => ({
       maxHeight: "40px",
@@ -15,15 +31,8 @@ const Dropdown: FC<Props> = ({ placeholder, ...props }) => {
       fontWeight: "semibold",
       padding: "8px 16px",
       "&:hover": {
-        backgroundColor: "black",
-        color: "white",
+        backgroundColor: "#D8E9E4",
       },
-    }),
-    dropdown: () => ({
-      backgroundColor: "red",
-    }),
-    placeholder: () => ({
-      color: "black",
     }),
     dropdownIndicator: () => ({
       display: "none",
@@ -35,10 +44,10 @@ const Dropdown: FC<Props> = ({ placeholder, ...props }) => {
 
   return (
     <Select
-      className="w-32 px-[14px] py-2 cursor-pointer z-0"
+      className={cn(selectVariants({ variant, className }))}
       placeholder={
-        <div className="flex items-center justify-center gap-[5px] font-ibm font-semibold text-sm">
-          {placeholder} <Icon svg={ChevronDownIcon} width={15} strokeWidth={1.7} />
+        <div className={cn("flex items-center justify-center gap-[5px] font-ibm font-semibold text-sm text-black", variant === "button" && "text-success")}>
+          {placeholder} <Icon svg={ChevronDownIcon} width={15} strokeWidth={1.7} className={cn("text-black", variant === "button" && "text-success")} />
         </div>
       }
       styles={customStyles}
